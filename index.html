@@ -21,12 +21,10 @@ height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-text-align:center;
-color:white;
 overflow:hidden;
-background: linear-gradient(-45deg,#ff758c,#ff7eb3,#ff6a88,#ff99ac);
+background:linear-gradient(-45deg,#ff758c,#ff7eb3,#ff6a88,#ff99ac);
 background-size:400% 400%;
-animation:gradient 12s ease infinite;
+animation:gradient 15s ease infinite;
 }
 
 @keyframes gradient{
@@ -36,59 +34,72 @@ animation:gradient 12s ease infinite;
 }
 
 .container{
-backdrop-filter: blur(10px);
-background:rgba(255,255,255,0.15);
+text-align:center;
 padding:40px;
 border-radius:25px;
-box-shadow:0 10px 40px rgba(0,0,0,0.2);
+background:rgba(255,255,255,0.15);
+backdrop-filter:blur(12px);
+box-shadow:0 15px 40px rgba(0,0,0,0.2);
 max-width:90%;
+color:white;
 }
 
 h1{
-font-size:30px;
+font-size:32px;
 margin-bottom:10px;
 }
 
 h2{
-font-size:24px;
-margin-bottom:20px;
-}
-
-.buttons{
-display:flex;
-justify-content:center;
-gap:20px;
-flex-wrap:wrap;
+font-weight:300;
+margin-bottom:25px;
 }
 
 button{
-padding:15px 25px;
+padding:15px 30px;
+font-size:20px;
 border:none;
-border-radius:15px;
-font-size:18px;
+border-radius:20px;
+background:#ff4d6d;
+color:white;
 cursor:pointer;
 transition:0.3s;
 }
 
-#oui{
-background:#00ff95;
-color:black;
-}
-
-#oui:hover{
+button:hover{
 transform:scale(1.1);
+box-shadow:0 10px 25px rgba(0,0,0,0.3);
 }
 
-#non{
-background:#ff3c3c;
-color:white;
-position:absolute;
+#message{
+margin-top:25px;
+font-size:20px;
+line-height:1.6;
+opacity:0;
+transform:translateY(20px);
+transition:1s;
+}
+
+.show{
+opacity:1;
+transform:translateY(0);
 }
 
 .heart{
 position:fixed;
+color:white;
 font-size:20px;
-pointer-events:none;
+animation:fall linear forwards;
+}
+
+@keyframes fall{
+0%{
+transform:translateY(-10vh);
+opacity:1;
+}
+100%{
+transform:translateY(110vh);
+opacity:0;
+}
 }
 
 </style>
@@ -103,58 +114,37 @@ pointer-events:none;
 
 <h2>Amandine</h2>
 
-<h2>Veux-tu sortir avec moi ?</h2>
+<button onclick="showMessage()">Oui ❤️</button>
 
-<div class="buttons">
-<button id="oui" onclick="explosion()">Oui ❤️</button>
-<button id="non" onmouseover="fuir()">Non 😅</button>
-</div>
+<p id="message">
+Depuis que je te connais, quelque chose a changé dans ma vie.  
+Ta présence me rend heureux, ton sourire illumine mes journées  
+et chaque moment passé avec toi devient un souvenir précieux.  
+Je voulais simplement te dire que tu comptes énormément pour moi. ❤️
+</p>
 
 </div>
 
 <script>
 
-function fuir(){
+function showMessage(){
 
-let bouton=document.getElementById("non");
+document.getElementById("message").classList.add("show")
 
-let x=Math.random()*window.innerWidth;
-let y=Math.random()*window.innerHeight;
+for(let i=0;i<80;i++){
 
-bouton.style.left=x+"px";
-bouton.style.top=y+"px";
+let heart=document.createElement("div")
+heart.className="heart"
+heart.innerHTML="❤️"
 
-}
+heart.style.left=Math.random()*100+"vw"
+heart.style.animationDuration=(Math.random()*3+2)+"s"
 
-function explosion(){
+document.body.appendChild(heart)
 
-for(let i=0;i<200;i++){
-
-let heart=document.createElement("div");
-heart.className="heart";
-heart.innerHTML="❤️";
-
-heart.style.left=window.innerWidth/2+"px";
-heart.style.top=window.innerHeight/2+"px";
-
-document.body.appendChild(heart);
-
-let x=(Math.random()-0.5)*800;
-let y=(Math.random()-0.5)*800;
-
-heart.animate([
-{transform:"translate(0,0) scale(1)",opacity:1},
-{transform:`translate(${x}px,${y}px) scale(2)`,opacity:0}
-],{
-duration:2000,
-easing:"ease-out"
-});
-
-setTimeout(()=>heart.remove(),2000)
+setTimeout(()=>heart.remove(),5000)
 
 }
-
-alert("Tu viens de rendre quelqu’un très heureux ❤️")
 
 }
 
