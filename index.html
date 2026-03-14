@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Pour toi ❤️</title>
+
+<style>
+body{
+    background: linear-gradient(135deg,#ff758c,#ff7eb3);
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:Arial;
+    color:white;
+    text-align:center;
+}
+
+.container{
+    background:rgba(0,0,0,0.4);
+    padding:40px;
+    border-radius:20px;
+}
+
+h1{
+    font-size:40px;
+}
+
+#message{
+    font-size:22px;
+    margin-top:20px;
+}
+button{
+    margin-top:20px;
+    padding:10px 20px;
+    border:none;
+    border-radius:10px;
+    font-size:18px;
+    cursor:pointer;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>❤️ Une chose à te dire ❤️</h1>
+
+<p id="message"></p>
+
+<button onclick="declaration()">Clique ici</button>
+
+</div>
+
+<script>
+
+function declaration(){
+
+let texte = "Depuis que je te connais, ma vie est différente. Tu es la personne la plus incroyable que j'ai rencontrée. J'avais juste envie de te dire... Je t'aime ❤️";
+
+let i = 0;
+
+let interval = setInterval(function(){
+
+document.getElementById("message").innerHTML += texte.charAt(i);
+
+i++;
+
+if(i >= texte.length){
+clearInterval(interval);
+}
+
+},50);
+
+}
+
+</script>
+
+</body>
+</html>
