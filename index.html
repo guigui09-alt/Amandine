@@ -9,49 +9,24 @@
 
 <style>
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family: "Segoe UI", sans-serif;
-}
-
 body{
 height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-overflow:hidden;
-background:linear-gradient(-45deg,#ff758c,#ff7eb3,#ff6a88,#ff99ac);
-background-size:400% 400%;
-animation:gradient 15s ease infinite;
-}
-
-@keyframes gradient{
-0%{background-position:0% 50%}
-50%{background-position:100% 50%}
-100%{background-position:0% 50%}
+text-align:center;
+background:linear-gradient(135deg,#ff758c,#ff7eb3);
+font-family:Arial;
+color:white;
+margin:0;
 }
 
 .container{
-text-align:center;
+background:rgba(255,255,255,0.15);
 padding:40px;
 border-radius:25px;
-background:rgba(255,255,255,0.15);
-backdrop-filter:blur(12px);
-box-shadow:0 15px 40px rgba(0,0,0,0.2);
+backdrop-filter:blur(10px);
 max-width:90%;
-color:white;
-}
-
-h1{
-font-size:32px;
-margin-bottom:10px;
-}
-
-h2{
-font-weight:300;
-margin-bottom:25px;
 }
 
 button{
@@ -62,44 +37,14 @@ border-radius:20px;
 background:#ff4d6d;
 color:white;
 cursor:pointer;
-transition:0.3s;
-}
-
-button:hover{
-transform:scale(1.1);
-box-shadow:0 10px 25px rgba(0,0,0,0.3);
+margin-top:20px;
 }
 
 #message{
+display:none;
 margin-top:25px;
 font-size:20px;
 line-height:1.6;
-opacity:0;
-transform:translateY(20px);
-transition:1s;
-}
-
-.show{
-opacity:1;
-transform:translateY(0);
-}
-
-.heart{
-position:fixed;
-color:white;
-font-size:20px;
-animation:fall linear forwards;
-}
-
-@keyframes fall{
-0%{
-transform:translateY(-10vh);
-opacity:1;
-}
-100%{
-transform:translateY(110vh);
-opacity:0;
-}
 }
 
 </style>
@@ -112,41 +57,23 @@ opacity:0;
 
 <h1>J'ai quelque chose à te dire ❤️</h1>
 
-<h2>Amandine</h2>
-
-<button onclick="showMessage()">Oui ❤️</button>
+<button id="btnOui">Oui ❤️</button>
 
 <p id="message">
-Depuis que je te connais, quelque chose a changé dans ma vie.  
-Ta présence me rend heureux, ton sourire illumine mes journées  
-et chaque moment passé avec toi devient un souvenir précieux.  
-Je voulais simplement te dire que tu comptes énormément pour moi. ❤️
+Depuis que je te connais, ma vie est devenue plus belle.  
+Ton sourire illumine mes journées et chaque moment passé avec toi compte énormément pour moi.  
+Je voulais simplement te dire que tu es quelqu’un de très spécial dans ma vie. ❤️
 </p>
 
 </div>
 
 <script>
 
-function showMessage(){
+document.getElementById("btnOui").addEventListener("click", function(){
 
-document.getElementById("message").classList.add("show")
+document.getElementById("message").style.display = "block"
 
-for(let i=0;i<80;i++){
-
-let heart=document.createElement("div")
-heart.className="heart"
-heart.innerHTML="❤️"
-
-heart.style.left=Math.random()*100+"vw"
-heart.style.animationDuration=(Math.random()*3+2)+"s"
-
-document.body.appendChild(heart)
-
-setTimeout(()=>heart.remove(),5000)
-
-}
-
-}
+})
 
 </script>
 
